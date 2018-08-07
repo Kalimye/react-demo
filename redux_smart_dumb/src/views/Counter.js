@@ -6,9 +6,20 @@ import * as Actions from '../Actions.js';
 
 import './Counter.css';
 
-class Counter extends Component {
-	constructor(props) {
-	  super(props);
+function Counter({onIncrement, onDecrement, caption, value}) {
+  return (
+		<div className="Counter">
+			<button onClick={onIncrement}>+</button>
+			<button onClick={onDecrement}>-</button>
+			<span>{caption} Count: {value}</span>
+		</div>
+	);
+}
+
+
+class CounterContainer extends Component {
+	constructor() {
+	  super(...arguments);
 
 		this.getOwnState = this.getOwnState.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -20,7 +31,7 @@ class Counter extends Component {
 
 	getOwnState() {
 	  return {
-		  value: store.getState()[this.props.caption]
+		  value: this.context.store.getState()[this.props.caption]
 		};
 	}
 
@@ -53,17 +64,22 @@ class Counter extends Component {
 		const {caption} = this.props;
 
 	  return (
-		  <div className="Counter">
-			  <button onClick={this.onIncrement}>+</button>
-			  <button onClick={this.onDecrement}>-</button>
-			  <span>{caption} Count: {value}</span>
-			</div>
+			<Counter 
+			  onIncrement={this.onIncrement}
+			  onDecrement={this.onDecrement}
+			  caption={caption}
+			  value={value}
+			/>
 		);
 	}
 }
 
-Counter.propTypes = {
+CounterContainer.contextTypes = {
+  store: PropTypes.object
+};
+
+CounterContainer.propTypes = {
   caption: PropTypes.string.isRequired
 };
 
-export default Counter;
+export default CounterContainer;
