@@ -1,0 +1,7 @@
+[] -- Store --> [Provider] --> [TodoApp]
+
+[TodoApp] --> {start: south;} [Todos], [Filter]
+[Todos] {origin: TodoApp; offset: 2,2;}
+[Filter] {origin: TodoApp; offset: -2,2;}
+
+[Todos] --> [TodoList] --> [TodoItem]
