@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import {addTodo} from '../actions.js';
 
+import './addTodo.css';
+
 class AddTodo extends React.Component {
 	constructor(props, context) {
 	  super(props, context);
@@ -20,7 +22,7 @@ class AddTodo extends React.Component {
 		});
 	}
 
-	onSubmit() {
+	onSubmit(event) {
 	  const inputValue = this.state.inputValue;
 
 		if (!inputValue.trim()) return;
@@ -30,10 +32,33 @@ class AddTodo extends React.Component {
 	}
 
   render() {
-	  return (
-		  <div>
-			  <input type="text" onChange={this.onInputChange} value={this.state.inputValue}/>
-			  <button onClick={this.onSubmit}>添加</button>
+		if (this.state.inputValue.trim() === '') {
+			return (
+				<div className='add-todo'>
+				  <i className="circle"></i>
+					<input 
+						type="text"
+						placeholder="添加待办事项"
+						autoFocus
+						onChange={this.onInputChange}
+						value={this.state.inputValue}
+					/>
+					<i className="submit normal" onClick={this.onSubmit}></i>
+				</div>
+			);
+		}
+
+		return (
+			<div className='add-todo'>
+			  <i className="circle"></i>
+				<input 
+					type="text"
+					placeholder="输入代办事项"
+					autoFocus
+					onChange={this.onInputChange}
+					value={this.state.inputValue}
+				/>
+				<i className="submit active" onClick={this.onSubmit}></i>
 			</div>
 		);
 	}

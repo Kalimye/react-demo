@@ -6,35 +6,32 @@ import {toggleTodo, removeTodo} from '../actions.js';
 import {FilterTypes} from '../../constants.js';
 import TodoItem from './todoItem.js';
 
-class TodoList extends React.Component {
-	constructor(props, context) {
-	  super(props, context);
-		console.log(props);
-	}
+import './todoList.css';
 
-  render() {
-	  return (
-		  <div>
-			{
-			  this.props.todos.map(item => {
-					console.log(item);
-					return (
-						<TodoItem 
-						  key={item.id}
-						  text={item.text}
-						  onToggleTodo={() => this.props.onToggleTodo(item.id)}
-						  onRemoveTodo={() => this.props.onRemoveTodo(item.id)}
-						/>
-					);
-				})
-			}
-			</div>
-		);
-	}
+const TodoList = ({todos, onToggleTodo, onRemoveTodo}) => {
+	return (
+		<div className="todo-list">
+		{
+			todos.map(item => {
+				return (
+					<TodoItem 
+						key={item.id}
+						completed={item.completed}
+						text={item.text}
+						onToggleTodo={() => onToggleTodo(item.id)}
+						onRemoveTodo={() => onRemoveTodo(item.id)}
+					/>
+				);
+			})
+		}
+		</div>
+	);
 }
 
 TodoList.propTypes = {
-	todos: PropTypes.array.isRequired
+	todos: PropTypes.array.isRequired,
+	onToggleTodo: PropTypes.func.isRequired,
+	onRemoveTodo: PropTypes.func.isRequired
 };
 
 const selectVisibleTodos = (todos, filter) => {
@@ -44,7 +41,7 @@ const selectVisibleTodos = (todos, filter) => {
 		case FilterTypes.COMPLETED:
 			return  todos.filter(item => item.completed);
 		case FilterTypes.UNCOMPLETED:
-			return todos.filter(item => !item.uncompleted);
+			return todos.filter(item => !item.completed);
 		default:
 			return todos;
 	}

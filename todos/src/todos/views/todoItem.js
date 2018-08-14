@@ -2,31 +2,43 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-const checkBox = {
-  display: 'inline-block',
-	width: '10px',
-	height: '10px',
-	border: '1px solid #919191',
-	borderRadius: '50%',
-	marginRight: '5px'
-};
+import './todoItem.css';
 
-const todoItem = {
-  paddingRight: '5px'
-};
+class TodoItem extends React.Component {
+	constructor(props, context) {
+	  super(props, context);
 
-function TodoItem({text, onToggleTodo, onRemoveTodo}) {
-  return (
-		<div>
-		  <span style={checkBox} onClick={onRemoveTodo}></span>
-			<span style={todoItem}>{text}</span>
-		  <span onClick={onRemoveTodo}>x</span>
-		</div>
-	);
-};
+		this.updateCheckboxState = this.updateCheckboxState.bind(this);
+		this.state = {checked: false};
+	}
+
+	updateCheckboxState() {
+	  if (this.state.checked) this.setState({checked: false});
+		else this.setState({checked: true});
+	}
+
+  render() {
+		if (!this.props.completed) {
+			return (
+				<div className="todo-item">
+					<span className="checkbox no" onClick={this.props.onToggleTodo}></span>
+					<span className="text">{this.props.text}</span>
+					<span className="remove" onClick={this.props.onRemoveTodo}></span>
+				</div>
+			);
+		}
+	  return (
+			<div className="todo-item">
+				<span className="checkbox yes" onClick={this.props.onToggleTodo}></span>
+				<span className="text">{this.props.text}</span>
+				<span className="remove" onClick={this.props.onRemoveTodo}></span>
+			</div>
+		);
+	}
+}
 
 TodoItem.propTypes = {
   text: PropTypes.string.isRequired
 };
 
-export default connect(null, null)(TodoItem);
+export default TodoItem;

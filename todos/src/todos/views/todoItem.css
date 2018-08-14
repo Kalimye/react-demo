@@ -1,0 +1,36 @@
+.todo-item {
+	width: 100%;
+	padding: 5px 0;
+  display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.todo-item .checkbox {
+  display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	margin-bottom: 1px;
+	transition: all .3s;
+}
+.todo-item .checkbox.no {
+  background: url("./checkbox-no.svg") no-repeat center center;
+	background-size: 100%;
+}
+.todo-item .checkbox.yes {
+  background: url("./checkbox-yes.svg") no-repeat center center;
+	background-size: 100%;
+}
+
+.todo-item .remove {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url("./close.svg") no-repeat center center;
+	background-size: 100%;
+	position: absolute;
+	right: 0;
+}

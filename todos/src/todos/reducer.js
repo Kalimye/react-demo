@@ -14,13 +14,15 @@ export default (state = [], action) => {
 		case TOGGLE_TODO:
 			return state.map(todoItem => {
 			  if (todoItem.id === action.id) {
-					console.log({...todoItem, completed: !todoItem.completed});
 				  return {...todoItem, completed: !todoItem.completed};
+				} else {
+				  return todoItem;
 				}
-				return todoItem;
 			});
 		case REMOVE_TODO:
-			return state.filter(todoItem => todoItem.id !== action.id);
+			return state.filter(todoItem => {
+				return todoItem.id !== action.id
+			});
 		default:
 			return state;
 	}

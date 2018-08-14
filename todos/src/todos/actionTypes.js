@@ -1,3 +1,6 @@
 export const ADD_TODO = 'TODO/ADD';
 export const TOGGLE_TODO = 'TODO/TOGGLE';
 export const REMOVE_TODO = 'TODO/REMOVE';
+
+export const CHECKED_CHECKBOX = 'CHECKBOX/CHECKED';
+export const UNCHECKED_CHECKBOX = 'CHECKBOX/UNCHECKED';

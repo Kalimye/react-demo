@@ -5,8 +5,8 @@ import TodoList from './todoList.js';
 function Todos() {
   return (
 	  <div>
-		  <AddTodo />
 		  <TodoList />
+		  <AddTodo />
 		</div>
 	);
 }
