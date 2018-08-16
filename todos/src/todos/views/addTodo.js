@@ -1,79 +1,80 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import * as actions from '../actions.js';
 
-import {addTodo} from '../actions.js';
+import './css/addTodo.css';
 
-import './addTodo.css';
-
-class AddTodo extends React.Component {
+class AddTodoContainer extends React.Component {
 	constructor(props, context) {
 	  super(props, context);
 
+		this.onChange = this.onChange.bind(this);
 		this.onInputChange = this.onInputChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 
-		this.state = {inputValue: ''};
+		this.state = {
+			inputValue: '',
+			buttonClass: 'normal'
+		};
+	}
+
+	onChange() {
+	  this.setState(this.context.store.getState());
 	}
 
 	onInputChange(event) {
-	  this.setState({
-		  inputValue: event.target.value
+		const inputValue = event.target.value;
+
+		if (!inputValue.trim()) {
+			this.setState({
+				inputValue: '',
+				buttonClass: 'normal'
+			});
+			return;
+		}
+
+		this.setState({
+			inputValue: inputValue,
+			buttonClass: 'active'
 		});
 	}
 
-	onSubmit(event) {
+	onSubmit() {
 	  const inputValue = this.state.inputValue;
 
 		if (!inputValue.trim()) return;
 
-		this.props.onAdd(inputValue);
-		this.setState({inputValue: ''});
+		this.context.store.dispatch(actions.addTodo(inputValue));
+		this.setState({inputValue: '', buttonClass: 'normal'});
+	}
+
+	componentDidMount() {
+		this.context.store.subscribe(this.onChange);
+	}
+
+	componentWillUnmount() {
+	  this.context.store.unsubscribe(this.onChange);
 	}
 
   render() {
-		if (this.state.inputValue.trim() === '') {
-			return (
-				<div className='add-todo'>
-				  <i className="circle"></i>
-					<input 
-						type="text"
-						placeholder="添加待办事项"
-						autoFocus
-						onChange={this.onInputChange}
-						value={this.state.inputValue}
-					/>
-					<i className="submit normal" onClick={this.onSubmit}></i>
-				</div>
-			);
-		}
-
 		return (
-			<div className='add-todo'>
-			  <i className="circle"></i>
+			<div className="add-todo">
+			  <i className="icon"></i>
 				<input 
-					type="text"
-					placeholder="输入代办事项"
 					autoFocus
+					type="text" 
+					placeholder="添加待办事项" 
+			    value={this.state.inputValue}
 					onChange={this.onInputChange}
-					value={this.state.inputValue}
 				/>
-				<i className="submit active" onClick={this.onSubmit}></i>
+				<i className={'submit ' + this.state.buttonClass} onClick={this.onSubmit}></i>
 			</div>
 		);
 	}
 }
 
-AddTodo.propTypes = {
-  onAdd: PropTypes.func.isRequired
+AddTodoContainer.contextTypes = {
+  store: PropTypes.object
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-	 onAdd: (text) => {
-		 dispatch(addTodo(text));
-	 }
-	};
-};
-
-export default connect(null, mapDispatchToProps)(AddTodo);
+export default AddTodoContainer;

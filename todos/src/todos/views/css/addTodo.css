@@ -1,0 +1,45 @@
+.add-todo {
+  width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.add-todo i {
+  display: inline-block;
+}
+
+.add-todo .icon {
+  min-width: 15px;
+	min-height: 15px;
+	border: 3px solid #91919191;
+	border-radius: 50%;
+	margin-left: 10px;
+}
+
+.add-todo input {
+	width: 100%;
+  border: none;
+	color: #313131;
+	padding: 10px;
+}
+.add-todo input:focus {outline: none;}
+
+.add-todo .submit {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 10px;
+	transition: background .3s;
+}
+.add-todo .submit.normal {
+  background: url("../images/send_normal.svg") no-repeat center center;
+	background-size: 100%;
+}
+.add-todo .submit.active {
+  background: url("../images/send_active.svg") no-repeat center center;
+	background-size: 100%;
+}

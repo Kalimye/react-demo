@@ -1,11 +1,9 @@
 import {createStore, combineReducers} from 'redux';
 
-import {reducer as todoReducer} from './todos/';
-import {reducer as filterReducer} from './filter/';
+import {reducer as todosReducer} from './todos/';
 
 const reducer = combineReducers({
-  todos: todoReducer,
-	filter: filterReducer
+	todos: todosReducer
 });
 
 export default createStore(reducer, {});
