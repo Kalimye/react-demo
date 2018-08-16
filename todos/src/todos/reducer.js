@@ -3,20 +3,24 @@ import {
 } from './actionTypes.js';
 
 export default (state = [], action) => {
+	console.log(action);
 	switch(action.type) {
 	  case ADD_TODO:
 			return [
+				...state,
 			  {
 					id: action.id,
 					text: action.text,
 					completed: false,
 					deleted: false
-				},
-				...state
-			].reverse();
+				}
+			];
 		case TOGGLE_TODO:
 			return state.map(todoItem => {
-			  return {...todoItem, completed: !todoItem.completed};
+				if (todoItem.id === action.id) {
+					return {...todoItem, completed: !todoItem.completed};
+				}
+				return todoItem;
 			});
 		case REMOVE_TODO:
 			return state.filter(todoItem => {

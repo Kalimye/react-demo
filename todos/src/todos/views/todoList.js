@@ -31,12 +31,10 @@ class TodoList extends React.Component {
 	}
 
   render() {
-		const todos = this.state.todos;
 	  return (
-		  <div>
-			  <h2>TodoList Component</h2>
+		  <div className="todo-list">
 			  {
-					todos.map(todoItem => {
+					this.state.todos.map(todoItem => {
 					  return (
 							<TodoItem 
 							  key={todoItem.id}
