@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions.js';
 import TodoItem from './todoItem.js';
 
+import './css/todoList.css';
+
 class TodoList extends React.Component {
 	constructor(props, context) {
 		super(props, context);

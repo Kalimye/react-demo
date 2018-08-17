@@ -36,10 +36,10 @@
 	transition: background .3s;
 }
 .add-todo .submit.normal {
-  background: url("../images/send_normal.svg") no-repeat center center;
+  background: url("../images/send-normal.svg") no-repeat center center;
 	background-size: 100%;
 }
 .add-todo .submit.active {
-  background: url("../images/send_active.svg") no-repeat center center;
+  background: url("../images/send-active.svg") no-repeat center center;
 	background-size: 100%;
 }

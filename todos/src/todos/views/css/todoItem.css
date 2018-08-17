@@ -1,0 +1,49 @@
+.todo-item {
+	width: 100%;
+	padding: 10px 0;
+	height: 25px;
+	line-height: 25px;
+	border-bottom: 1px solid #e1e1e1;
+  display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+}
+
+.todo-item span {display: inline-block;}
+
+.todo-item .checkbox {
+	min-width: 20px;
+	height: 20px;
+	transition: background .3s;
+	margin-left: 10px;
+	margin-bottom: 1px;
+}
+.todo-item .checkbox.checkbox-no {
+  background: url("../images/checkbox-no.svg") no-repeat center center;
+	background-size: 100%;
+}
+.todo-item .checkbox.checkbox-yes {
+  background: url("../images/checkbox-yes.svg") no-repeat center center;
+	background-size: 100%;
+}
+
+.todo-item .text {
+	margin-left: 15px;
+	margin-right: 35px;
+  font-size: 22px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.todo-item .trash {
+  min-width: 20px;
+	height: 20px;
+	background: url("../images/trash.svg") no-repeat center center;
+	background-size: 100%;
+	margin-right: 10px;
+	margin-bottom: 1px;
+	position: absolute;
+	right: 0;
+}

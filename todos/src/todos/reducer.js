@@ -3,7 +3,6 @@ import {
 } from './actionTypes.js';
 
 export default (state = [], action) => {
-	console.log(action);
 	switch(action.type) {
 	  case ADD_TODO:
 			return [
