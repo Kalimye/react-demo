@@ -33,7 +33,6 @@ class TodoItem extends React.Component {
 	}
 
   render() {
-		console.log(this.context.store.getState().todos);
 	  return (
 		  <div className="todo-item">
 			  <span className="check" onClick={this.props.onToggleTodo}>○ </span>

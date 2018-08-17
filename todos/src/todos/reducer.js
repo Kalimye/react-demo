@@ -7,13 +7,13 @@ export default (state = [], action) => {
 	switch(action.type) {
 	  case ADD_TODO:
 			return [
+				...state,
 			  {
 					id: action.id,
 					text: action.text,
 					completed: false,
 					deleted: false
-				},
-				...state,
+				}
 			];
 		case TOGGLE_TODO:
 			return state.map(todoItem => {
