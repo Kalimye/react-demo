@@ -7,13 +7,13 @@ export default (state = [], action) => {
 	switch(action.type) {
 	  case ADD_TODO:
 			return [
-				...state,
 			  {
 					id: action.id,
 					text: action.text,
 					completed: false,
 					deleted: false
-				}
+				},
+				...state,
 			];
 		case TOGGLE_TODO:
 			return state.map(todoItem => {
@@ -25,7 +25,7 @@ export default (state = [], action) => {
 		case REMOVE_TODO:
 			return state.filter(todoItem => {
 				// @TODO 查看 action 是什么东西
-			  return todoItem.id === action.id;
+			  return todoItem.id !== action.id;
 			});
 		case DELETE_TODO:
 			return state.map(todoItem => {

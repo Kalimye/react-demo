@@ -32,21 +32,13 @@ class TodoItem extends React.Component {
 		this.context.store.dispatch(actions.removeTodo(id));
 	}
 
-	componentDidMount() {
-		this.context.store.subscribe(this.onChange);
-	}
-
-	componentWillUnmount() {
-		this.context.store.subscribe(this.onChange);
-	}
-
   render() {
 		console.log(this.context.store.getState().todos);
 	  return (
 		  <div className="todo-item">
-			  <span className="check" onClick={() => {this.onToggleTodo(this.props.id)}}>○ </span>
+			  <span className="check" onClick={this.props.onToggleTodo}>○ </span>
 			  <span className="text">{this.props.text}</span>
-			  <span className="delete" onClick={() => {this.onRemoveTodo(this.props.id)}}>× </span>
+			  <span className="delete" onClick={this.props.onRemoveTodo}>× </span>
 			</div>
 		);
 	}

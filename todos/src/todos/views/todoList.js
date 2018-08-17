@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as actions from '../actions.js';
 import TodoItem from './todoItem.js';
 
 class TodoList extends React.Component {
@@ -8,6 +9,8 @@ class TodoList extends React.Component {
 
 		this.onChange = this.onChange.bind(this);
 		this.getOwnState = this.getOwnState.bind(this);
+		this.onToggleTodo = this.onToggleTodo.bind(this);
+		this.onRemoveTodo = this.onRemoveTodo.bind(this);
 
 		this.state = this.getOwnState();
 	}
@@ -21,6 +24,14 @@ class TodoList extends React.Component {
 	onChange() {
 	  this.setState(this.getOwnState());
 	}
+
+	onToggleTodo(id) {
+	  this.context.store.dispatch(actions.toggleTodo(id));
+	};
+
+	onRemoveTodo(id) {
+	  this.context.store.dispatch(actions.removeTodo(id));
+	};
 
 	componentDidMount() {
 		this.context.store.subscribe(this.onChange);
@@ -40,6 +51,8 @@ class TodoList extends React.Component {
 							  key={todoItem.id}
 							  id={todoItem.id}
 							  text={todoItem.text}
+							  onToggleTodo={() => {this.onToggleTodo(todoItem.id)}}
+							  onRemoveTodo={() => {this.onRemoveTodo(todoItem.id)}}
 							/>
 						);
 					})
