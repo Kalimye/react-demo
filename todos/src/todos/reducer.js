@@ -1,6 +1,4 @@
-import {
-	ADD_TODO, TOGGLE_TODO, REMOVE_TODO, DELETE_TODO
-} from './actionTypes.js';
+import {ADD_TODO, TOGGLE_TODO, REMOVE_TODO} from './actionTypes.js';
 
 export default (state = [], action) => {
 	switch(action.type) {
@@ -23,12 +21,7 @@ export default (state = [], action) => {
 			});
 		case REMOVE_TODO:
 			return state.filter(todoItem => {
-				// @TODO 查看 action 是什么东西
 			  return todoItem.id !== action.id;
-			});
-		case DELETE_TODO:
-			return state.map(todoItem => {
-			  return {...todoItem, deleted: !todoItem.deleted};
 			});
 		default:
 			return state;

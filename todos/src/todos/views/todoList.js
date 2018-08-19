@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as actions from '../actions.js';
 import TodoItem from './todoItem.js';
+import {FilterTypes} from '../../constants.js';
 
 import './css/todoList.css';
 
@@ -18,9 +19,26 @@ class TodoList extends React.Component {
 	}
 
 	getOwnState() {
-	  return {
-		  todos: this.context.store.getState().todos
-		};
+		const store = this.context.store.getState();
+
+		switch(store.filter) {
+		  case FilterTypes.UNCOMPLETED:
+				return {
+				  todos: store.todos.filter(item => !item.completed)
+				};
+			case FilterTypes.COMPLETED:
+				return {
+				  todos: store.todos.filter(item => item.completed)
+				};
+			case FilterTypes.ALL:
+				return {todos: store.todos};
+			case FilterTypes.DELETED:
+				return {
+				  todos: store.todos.filter(item => item.deleted)
+				};
+			default:
+				throw new Error('unsupported filter');
+		}
 	}
 
 	onChange() {
