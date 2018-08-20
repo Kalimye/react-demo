@@ -1,0 +1,10 @@
+.slider {
+  position: absolute;
+	top: 0;
+	left: -80%;
+	z-index: 2;
+	background: lightgreen;
+	width: 80%;
+	height: 100vh;
+	transition: left .3s;
+}

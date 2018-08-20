@@ -1,5 +1,6 @@
 import React from 'react';
 import {view as Header} from './header/';
+import {view as Slider} from './slider/';
 
 import './SliderApp.css';
 
@@ -8,6 +9,7 @@ class SliderApp extends React.Component {
 	  return (
 		  <div>
 			  <Header />
+			  <Slider />
 			</div>
 		);
 	}
