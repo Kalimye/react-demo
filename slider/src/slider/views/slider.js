@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.css';
 
-class Slider extends React.Component {
+class SliderContainer extends React.Component {
 	constructor() {
 	  super(...arguments);
 
@@ -42,8 +42,8 @@ class Slider extends React.Component {
 	}
 }
 
-Slider.contextTypes = {
+SliderContainer.contextTypes = {
   store: PropTypes.object
 };
 
-export default Slider;
+export default SliderContainer;
