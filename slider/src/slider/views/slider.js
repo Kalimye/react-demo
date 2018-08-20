@@ -1,7 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {closeSlider} from '../actions.js';
+
 import './style.css';
+
+class Slider extends React.Component {
+	render() {
+		if (this.props.sliderState.open) {
+			// 渲染展开状态下的 slider
+			return (
+				<div className="slider" style={{left: 0}}>
+					<div className="slider-menu">
+						<i onClick={this.props.onClick}></i>
+					</div>
+				</div>
+			);
+		} else {
+			// 渲染收起状态下的 slider
+			return (
+				<div className="slider" style={{left: '-80%'}}>
+				</div>
+			);
+		}
+	}
+};
+
+Slider.propTypes = {
+  sliderState: PropTypes.object.isRequired,
+	onClick: PropTypes.func.isRequired
+};
 
 class SliderContainer extends React.Component {
 	constructor() {
@@ -9,6 +37,7 @@ class SliderContainer extends React.Component {
 
 		this.getOwnState = this.getOwnState.bind(this);
 		this.onChange = this.onChange.bind(this);
+		this.onClickCloseBtn = this.onClickCloseBtn.bind(this);
 
 		this.state = this.getOwnState();
 	}
@@ -21,6 +50,10 @@ class SliderContainer extends React.Component {
 	  this.setState(this.getOwnState());
 	}
 
+	onClickCloseBtn() {
+		this.context.store.dispatch(closeSlider());
+	}
+
 	componentDidMount() {
 	  this.context.store.subscribe(this.onChange);
 	}
@@ -30,15 +63,10 @@ class SliderContainer extends React.Component {
 	}
 
   render() {
-		if (this.state.slider.open) {
-			return (
-			  <div className="slider" style={{left: '0'}}></div>
-			);
-		} else {
-			return (
-			  <div className="slider" style={{left: '-80%'}}></div>
-			);
-		}
+		return <Slider 
+			sliderState={this.state.slider}
+		  onClick={this.onClickCloseBtn}
+		/>;
 	}
 }
 

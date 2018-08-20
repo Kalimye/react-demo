@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {openSlider} from '../actions.js';
+import {actions} from '../../slider/';
 
 import './style.css';
 
@@ -35,7 +35,7 @@ class HeaderContainer extends React.Component {
 	}
 
 	onClickMenu() {
-		this.context.store.dispatch(openSlider());
+		this.context.store.dispatch(actions.openSlider());
 	}
 
 	componentDidMount() {

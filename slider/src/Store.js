@@ -1,5 +1,5 @@
 import {createStore, combineReducers} from 'redux';
-import {reducer as sliderReducer} from './header/';
+import {reducer as sliderReducer} from './slider/';
 
 const reducer = combineReducers({
 	slider: sliderReducer
