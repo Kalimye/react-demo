@@ -1,58 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {closeSlider} from '../actions.js';
 
 import './style.css';
 
-class SliderContent extends React.Component {
-	constructor() {
-	  super(...arguments);
-	}
 
-  render() {
-	  return (
-			<div className="slider" style={this.props.sliderStyle}>
-				<p className="slider-menu">
-					<i onClick={this.props.onClick}></i>
-				</p>
-			  <p className="slider-menu">
-			    <span>Page 01</span>
-			  </p>
-			  <p className="slider-menu">
-			    <span>Page 02</span>
-			  </p>
-			  <p className="slider-menu">
-			    <span>Page 03</span>
-			  </p>
-			</div>
+const SliderContent = ({sliderStyle, onClickCloseBtn}) => (
+	<div className="slider" style={sliderStyle}>
+		<p className="slider-menu">
+			<i onClick={onClickCloseBtn}></i>
+		</p>
+		<p className="slider-menu">
+			<span>Page 01</span>
+		</p>
+		<p className="slider-menu">
+			<span>Page 02</span>
+		</p>
+		<p className="slider-menu">
+			<span>Page 03</span>
+		</p>
+	</div>
+);
+
+SliderContent.propTypes = {
+  sliderStyle: PropTypes.object.isRequired,
+	onClickCloseBtn: PropTypes.func
+};
+
+
+const Slider = ({sliderState, onClickCloseBtn}) => {
+	if (sliderState.open) {
+		// 渲染展开状态下的 slider
+		return (
+			<SliderContent
+				sliderStyle={{left: 0}} 
+				onClickCloseBtn={onClickCloseBtn}
+			/>
 		);
-	}
-}
-
-class Slider extends React.Component {
-	render() {
-		if (this.props.sliderState.open) {
-			// 渲染展开状态下的 slider
-			return (
-				<SliderContent
-				  sliderStyle={{left: 0}} 
-				  onClick={this.props.onClick}
-				/>
-			);
-		} else {
-			// 渲染收起状态下的 slider
-			return (
-				<SliderContent sliderStyle={{left: '-80%'}} />
-			);
-		}
+	} else {
+		// 渲染收起状态下的 slider
+		return (
+			<SliderContent sliderStyle={{left: '-80%'}} />
+		);
 	}
 };
 
 Slider.propTypes = {
   sliderState: PropTypes.object.isRequired,
-	onClick: PropTypes.func.isRequired
+	onClickCloseBtn: PropTypes.func.isRequired
 };
+
 
 class SliderContainer extends React.Component {
 	constructor() {
@@ -88,7 +85,7 @@ class SliderContainer extends React.Component {
   render() {
 		return <Slider 
 			sliderState={this.state.slider}
-		  onClick={this.onClickCloseBtn}
+		  onClickCloseBtn={this.onClickCloseBtn}
 		/>;
 	}
 }
