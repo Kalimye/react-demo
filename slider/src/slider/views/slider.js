@@ -5,22 +5,45 @@ import {closeSlider} from '../actions.js';
 
 import './style.css';
 
+class SliderContent extends React.Component {
+	constructor() {
+	  super(...arguments);
+	}
+
+  render() {
+	  return (
+			<div className="slider" style={this.props.sliderStyle}>
+				<p className="slider-menu">
+					<i onClick={this.props.onClick}></i>
+				</p>
+			  <p className="slider-menu">
+			    <span>Page 01</span>
+			  </p>
+			  <p className="slider-menu">
+			    <span>Page 02</span>
+			  </p>
+			  <p className="slider-menu">
+			    <span>Page 03</span>
+			  </p>
+			</div>
+		);
+	}
+}
+
 class Slider extends React.Component {
 	render() {
 		if (this.props.sliderState.open) {
 			// 渲染展开状态下的 slider
 			return (
-				<div className="slider" style={{left: 0}}>
-					<div className="slider-menu">
-						<i onClick={this.props.onClick}></i>
-					</div>
-				</div>
+				<SliderContent
+				  sliderStyle={{left: 0}} 
+				  onClick={this.props.onClick}
+				/>
 			);
 		} else {
 			// 渲染收起状态下的 slider
 			return (
-				<div className="slider" style={{left: '-80%'}}>
-				</div>
+				<SliderContent sliderStyle={{left: '-80%'}} />
 			);
 		}
 	}
