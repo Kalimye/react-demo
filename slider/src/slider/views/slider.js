@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {closeSlider} from '../actions.js';
 
 import './style.css';
@@ -11,13 +12,13 @@ const SliderContent = ({sliderStyle, onClickCloseBtn}) => (
 			<i onClick={onClickCloseBtn}></i>
 		</p>
 		<p className="slider-menu">
-			<span>Page 01</span>
+			<span><Link to="/">Home</Link></span>
 		</p>
 		<p className="slider-menu">
-			<span>Page 02</span>
+			<span><Link to="/about">About</Link></span>
 		</p>
 		<p className="slider-menu">
-			<span>Page 03</span>
+			<span><Link to="/topic">Topic</Link></span>
 		</p>
 	</div>
 );
