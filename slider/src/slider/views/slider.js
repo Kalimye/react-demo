@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {closeSlider} from '../actions.js';
 
 import './style.css';
@@ -12,13 +12,13 @@ const SliderContent = ({sliderStyle, onClickCloseBtn}) => (
 			<i onClick={onClickCloseBtn}></i>
 		</p>
 		<p className="slider-menu">
-			<span><Link to="/">Home</Link></span>
+			<span><NavLink exact to="/" activeClassName="active-selected">Home</NavLink></span>
 		</p>
 		<p className="slider-menu">
-			<span><Link to="/about">About</Link></span>
+			<span><NavLink to="/about" activeClassName="active-selected">About</NavLink></span>
 		</p>
 		<p className="slider-menu">
-			<span><Link to="/topic">Topic</Link></span>
+			<span><NavLink to="/topic" activeClassName="active-selected">Topic</NavLink></span>
 		</p>
 	</div>
 );

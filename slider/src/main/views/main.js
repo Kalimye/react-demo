@@ -11,7 +11,7 @@ class Main extends React.Component {
 	  return (
 		  <div className="main">
 			  <Route exact path="/" component={Home}/>
-			  <Route path="/about" component={About}/>
+			  <Route path="/about/" component={About}/>
 			  <Route path="/topic" component={Topic}/>
 			</div>
 		);

@@ -28,3 +28,6 @@
 }
 
 .slider-menu span {margin-left: 8px;}
+
+.slider-menu a.active {color: #313131;}
+.slider-menu a.active-selected {color: red;}
