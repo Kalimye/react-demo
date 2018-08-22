@@ -33,6 +33,12 @@ const Topic = props => {
 	);
 };
 
+const Counter = props => (
+  <Bundle load={() => import('../../counter/')}>
+	  {Counter => <Counter {...props} />}
+	</Bundle>
+);
+
 class Main extends React.Component {
 	render() {
 	  return (
@@ -40,6 +46,7 @@ class Main extends React.Component {
 			  <Route exact path="/" component={Home}/>
 			  <Route path="/about/" component={About}/>
 			  <Route path="/topic" component={Topic}/>
+			  <Route path="/counter" component={Counter}/>
 			</div>
 		);
 	}

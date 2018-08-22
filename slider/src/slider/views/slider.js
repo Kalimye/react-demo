@@ -20,6 +20,9 @@ const SliderContent = ({sliderStyle, onClickCloseBtn}) => (
 		<p className="slider-menu">
 			<span onClick={onClickCloseBtn}><NavLink to="/topic" activeClassName="active-selected">Topic</NavLink></span>
 		</p>
+		<p className="slider-menu">
+			<span onClick={onClickCloseBtn}><NavLink to="/counter" activeClassName="active-selected">Counter</NavLink></span>
+		</p>
 	</div>
 );
 

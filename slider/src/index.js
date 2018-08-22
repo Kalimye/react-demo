@@ -4,6 +4,8 @@ import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 
 import store from './Store.js';
+import {view as LoadAnimation} from './loadAnimation/';
+
 import './SliderAppEntry.css';
 
 import registerServiceWorker from './registerServiceWorker';
@@ -68,8 +70,7 @@ class Bundle extends React.Component {
 	}
 
 	render() {
-	  // return this.state.mod ? this.props.children(this.state.mod) : <EntryComponent />;
-	  return this.state.mod ? this.props.children(this.state.mod) : null;
+	  return this.state.mod ? this.props.children(this.state.mod) : <LoadAnimation />;
 	}
 }
 
