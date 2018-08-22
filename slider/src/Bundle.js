@@ -20,15 +20,24 @@ export default class Bundle extends React.Component {
 	load(props) {
 	  this.setState({mod: null});
 
-		// import() 返回一个 Promise 对象
-		props.load().then(mod => {
-		  this.setState({
-			  mod: mod.view ? mod.view : null
+		import('./loadAnimation/').then(response => {
+			this.setState({
+				mod: response.view ? response.view : null
+			});
+		}).catch(error => {
+		  throw new Error('加载等待动画失败！');
+		}).then(() => {
+			props.load().then(mod => {
+			  this.setState({
+				  mod: mod.view ? mod.view : null
+				});
+			}).catch(error => {
+			  throw new Error('加载组件失败！');
 			});
 		});
 	}
 
 	render() {
-	  return this.state.mod ? this.props.children(this.state.mod) : null
+	  return this.state.mod ? this.props.children(this.state.mod) : null;
 	}
 }

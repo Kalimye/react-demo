@@ -18,7 +18,9 @@ const Home = props => {
 const About = props => {
   return (
 	  <Bundle load={() => import('../../about/')}>
-		  {(About) => <About {...props} />}
+		  {(About) => {
+				return <About {...props} />;
+			}}
 		</Bundle>
 	);
 };
