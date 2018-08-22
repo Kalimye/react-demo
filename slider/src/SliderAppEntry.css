@@ -17,14 +17,20 @@
 	height: 100%;
 	background: url("./entry.jpg") no-repeat center center;
 	background-size: 100%;
+	opacity: 1;
+	transition: opacity .3s;
 }
+.app-entry .image.opacity {opacity: 0;}
 
 .app-entry .text {
   position: absolute;
 	top: 50px;
 	right: 50px;
 	padding: 5px 20px;
-	background: #00000060;
+	background: #000000;
+	opacity: .4;
 	color: #fff;
 	border-radius: 3px;
+	transition: background .3s;
 }
+.app-entry .text.opacity {background: #fff;}

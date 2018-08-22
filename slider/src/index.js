@@ -11,7 +11,7 @@ import registerServiceWorker from './registerServiceWorker';
 class EntryComponent extends React.Component {
 	constructor() {
 	  super();
-		this.state = {num: 3};
+		this.state = {num: 3, hidden: ''};
 		this.timer();
 	}
 
@@ -20,9 +20,14 @@ class EntryComponent extends React.Component {
 
 		num--;
 
-		if (num < 0) return;
+		if (num === -1) {
+		  this.setState({hidden: 'opacity'});
+		}
+
+		if (num < -1) return;
 
 	  setTimeout(() => {
+			if (num === -1) return;
 			this.setState({num: num});
 			this.timer();
 		}, 1000);
@@ -31,8 +36,8 @@ class EntryComponent extends React.Component {
   render() {
 	  return (
 			<div className="app-entry">
-				<span className="image"></span>
-				<span className="text">Loading ({this.state.num})</span>
+				<span className={'image ' + this.state.hidden}></span>
+				<span className={'text ' + this.state.hidden}>Loading ({this.state.num})</span>
 			</div>
 		);
 	}
@@ -63,7 +68,8 @@ class Bundle extends React.Component {
 	}
 
 	render() {
-	  return this.state.mod ? this.props.children(this.state.mod) : <EntryComponent />;
+	  // return this.state.mod ? this.props.children(this.state.mod) : <EntryComponent />;
+	  return this.state.mod ? this.props.children(this.state.mod) : null;
 	}
 }
 
