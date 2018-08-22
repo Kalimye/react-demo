@@ -1,0 +1,24 @@
+.main .counter {
+	padding-top: 10px;
+	padding-left: 5px;
+  display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.main .counter .button {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-bottom: 1px;
+	margin-right: 10px;
+}
+.main .counter .button.icon-add {
+  background: url("./images/add.svg") no-repeat center center;
+	background-size: 100%;
+}
+.main .counter .button.icon-reduce {
+  background: url("./images/reduce.svg") no-repeat center center;
+	background-size: 100%;
+	margin-right: 20px;
+}
