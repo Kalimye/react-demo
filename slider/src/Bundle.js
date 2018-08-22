@@ -8,7 +8,6 @@ export default class Bundle extends React.Component {
 	}
 
 	componentWillMount() {
-		console.log(this.props);
 	  this.load(this.props);
 	}
 
