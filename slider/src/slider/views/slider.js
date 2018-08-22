@@ -12,13 +12,13 @@ const SliderContent = ({sliderStyle, onClickCloseBtn}) => (
 			<i onClick={onClickCloseBtn}></i>
 		</p>
 		<p className="slider-menu">
-			<span><NavLink exact to="/" activeClassName="active-selected">Home</NavLink></span>
+			<span onClick={onClickCloseBtn}><NavLink exact to="/" activeClassName="active-selected">Home</NavLink></span>
 		</p>
 		<p className="slider-menu">
-			<span><NavLink to="/about" activeClassName="active-selected">About</NavLink></span>
+			<span onClick={onClickCloseBtn}><NavLink to="/about" activeClassName="active-selected">About</NavLink></span>
 		</p>
 		<p className="slider-menu">
-			<span><NavLink to="/topic" activeClassName="active-selected">Topic</NavLink></span>
+			<span onClick={onClickCloseBtn}><NavLink to="/topic" activeClassName="active-selected">Topic</NavLink></span>
 		</p>
 	</div>
 );
