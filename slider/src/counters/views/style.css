@@ -1,0 +1,32 @@
+.main .counters {
+	padding-top: 10px;
+	padding-left: 5px;
+  display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.main .counters .counter-item {
+	padding-bottom: 10px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.main .counters .button {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-bottom: 1px;
+	margin-right: 10px;
+}
+.main .counters .button.icon-add {
+  background: url("./images/add.svg") no-repeat center center;
+	background-size: 100%;
+}
+.main .counters .button.icon-reduce {
+  background: url("./images/reduce.svg") no-repeat center center;
+	background-size: 100%;
+	margin-right: 20px;
+}
