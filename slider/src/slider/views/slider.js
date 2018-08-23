@@ -12,19 +12,19 @@ const SliderContent = ({sliderStyle, onClickCloseBtn}) => (
 			<i onClick={onClickCloseBtn}></i>
 		</p>
 		<p className="slider-menu">
-			<span onClick={onClickCloseBtn}><NavLink exact to="/" activeClassName="active-selected">Home</NavLink></span>
+			<span onClick={onClickCloseBtn}><NavLink exact to="/" activeClassName="active-selected" replace>Home</NavLink></span>
 		</p>
 		<p className="slider-menu">
-			<span onClick={onClickCloseBtn}><NavLink to="/about" activeClassName="active-selected">About</NavLink></span>
+			<span onClick={onClickCloseBtn}><NavLink to="/about" activeClassName="active-selected" replace>About</NavLink></span>
 		</p>
 		<p className="slider-menu">
-			<span onClick={onClickCloseBtn}><NavLink to="/topic" activeClassName="active-selected">Topic</NavLink></span>
+			<span onClick={onClickCloseBtn}><NavLink to="/topic" activeClassName="active-selected" replace>Topic</NavLink></span>
 		</p>
 		<p className="slider-menu">
-			<span onClick={onClickCloseBtn}><NavLink to="/counter" activeClassName="active-selected">Counter</NavLink></span>
+			<span onClick={onClickCloseBtn}><NavLink to="/counter" activeClassName="active-selected" replace>Counter</NavLink></span>
 		</p>
 		<p className="slider-menu">
-			<span onClick={onClickCloseBtn}><NavLink to="/counters" activeClassName="active-selected">Counters</NavLink></span>
+			<span onClick={onClickCloseBtn}><NavLink to="/counters" activeClassName="active-selected" replace>Counters</NavLink></span>
 		</p>
 	</div>
 );
