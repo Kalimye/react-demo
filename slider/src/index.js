@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 
 import store from './Store.js';
 import {view as LoadAnimation} from './loadAnimation/';
@@ -76,13 +76,13 @@ class Bundle extends React.Component {
 
 ReactDOM.render(
 	<Provider store={store}>
-	  <BrowserRouter>
+	  <HashRouter>
 	    <Bundle load={() => import('./SliderApp.js')}>
 	      {
 					(SliderApp) => (<SliderApp />)
 				}
 	    </Bundle>
-	  </BrowserRouter>
+	  </HashRouter>
 	</Provider>,
 	document.getElementById('root')
 );

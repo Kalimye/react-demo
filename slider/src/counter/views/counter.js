@@ -17,7 +17,9 @@ class Counter extends React.Component {
 	}
 
 	getOwnState() {
-		return this.context.store.getState()
+	  return {
+		  counter: this.context.store.getState().counter
+		};
 	}
 
 	onChange() {
@@ -32,27 +34,29 @@ class Counter extends React.Component {
 		this.context.store.dispatch(decrement(this.props.caption));
 	}
 
-	shouldComponentUpdate(nextState, nextProps) {
-		return this.state.counter[this.props.caption] !== nextProps.counter[this.props.caption];
+  shouldComponentUpdate(nextState, nextProps) {
+		const caption = this.props.caption;
+		return this.state.counter[caption] !== nextProps.counter[caption];
 	}
 
-	// 这里有问题，组件卸载之后不能执行 setState() 操作，想办法解决
 	componentDidMount() {
-		this.context.store.subscribe(this.onChange);
+		this.setState({
+		  unsubscribe: this.context.store.subscribe(this.onChange)
+		});
 	}
 
 	componentWillUnmount() {
-		this.context.store.subscribe(this.onChange);
+		this.state.unsubscribe();
 	}
 
 	render() {
-		console.log(this.state.counter);
-		console.log(this.props);
+		const caption = this.props.caption;
+
 	  return (
 			<div className="counter">
 			  <span className="button icon-add" onClick={this.onIncrement}></span>
 			  <span className="button icon-reduce" onClick={this.onDecrement}></span>
-			  <span>{this.state.counter[this.props.caption]}</span>
+			  <span>{this.state.counter[caption]}</span>
 			</div>
 		);
 	}

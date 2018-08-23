@@ -67,7 +67,9 @@ class SliderContainer extends React.Component {
 	}
 
 	getOwnState() {
-	  return this.context.store.getState()
+	  return {
+			slider: this.context.store.getState().slider
+		};
 	}
 	
 	onChange() {
