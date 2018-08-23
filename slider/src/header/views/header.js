@@ -39,11 +39,13 @@ class HeaderContainer extends React.Component {
 	}
 
 	componentDidMount() {
-	  this.context.store.subscribe(this.onChange);
+		this.setState({
+		  unsubscribe: this.context.store.subscribe(this.onChange)
+		});
 	}
 
 	componentWillUnmount() {
-	  this.context.store.unsubscribe(this.onChange);
+		this.state.unsubscribe();
 	}
 
   render() {

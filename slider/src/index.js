@@ -5,46 +5,14 @@ import {HashRouter} from 'react-router-dom';
 
 import store from './Store.js';
 import {view as LoadAnimation} from './loadAnimation/';
+// import {view as EntryComponent} from './entryComponent/';
 
 import './SliderAppEntry.css';
 
 import registerServiceWorker from './registerServiceWorker';
 
-class EntryComponent extends React.Component {
-	constructor() {
-	  super();
-		this.state = {num: 3, hidden: ''};
-		this.timer();
-	}
 
-	timer() {
-		let num = this.state.num;
-
-		num--;
-
-		if (num === -1) {
-		  this.setState({hidden: 'opacity'});
-		}
-
-		if (num < -1) return;
-
-	  setTimeout(() => {
-			if (num === -1) return;
-			this.setState({num: num});
-			this.timer();
-		}, 1000);
-	}
-
-  render() {
-	  return (
-			<div className="app-entry">
-				<span className={'image ' + this.state.hidden}></span>
-				<span className={'text ' + this.state.hidden}>Loading ({this.state.num})</span>
-			</div>
-		);
-	}
-}
-
+// 异步请求 SliderApp 组件
 class Bundle extends React.Component {
 	constructor(props) {
 	  super(props);
@@ -78,9 +46,7 @@ ReactDOM.render(
 	<Provider store={store}>
 	  <HashRouter>
 	    <Bundle load={() => import('./SliderApp.js')}>
-	      {
-					(SliderApp) => (<SliderApp />)
-				}
+	      {SliderApp => <SliderApp />}
 	    </Bundle>
 	  </HashRouter>
 	</Provider>,
