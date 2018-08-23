@@ -17,9 +17,7 @@ class Counter extends React.Component {
 	}
 
 	getOwnState() {
-	  return {
-		  counter: this.context.store.getState().counter
-		};
+		return this.context.store.getState()
 	}
 
 	onChange() {
@@ -27,33 +25,34 @@ class Counter extends React.Component {
 	}
 
 	onIncrement() {
-		this.context.store.dispatch(increment(this.state.counter.init));
+		this.context.store.dispatch(increment(this.props.caption));
 	}
 
 	onDecrement() {
-		this.context.store.dispatch(decrement(this.state.counter.init));
+		this.context.store.dispatch(decrement(this.props.caption));
 	}
 
 	shouldComponentUpdate(nextState, nextProps) {
-		return nextProps.counter.init !== this.state.counter.init;
+		return this.state.counter[this.props.caption] !== nextProps.counter[this.props.caption];
 	}
 
 	// 这里有问题，组件卸载之后不能执行 setState() 操作，想办法解决
-	// componentDidMount() {
-	// 	this.context.store.subscribe(this.onChange);
-	// }
+	componentDidMount() {
+		this.context.store.subscribe(this.onChange);
+	}
 
-	// componentWillUnmount() {
-	//   console.log('will unmount');
-	// }
+	componentWillUnmount() {
+		this.context.store.subscribe(this.onChange);
+	}
 
 	render() {
 		console.log(this.state.counter);
+		console.log(this.props);
 	  return (
 			<div className="counter">
 			  <span className="button icon-add" onClick={this.onIncrement}></span>
 			  <span className="button icon-reduce" onClick={this.onDecrement}></span>
-			  <span>{this.state.counter.init}</span>
+			  <span>{this.state.counter[this.props.caption]}</span>
 			</div>
 		);
 	}
@@ -61,6 +60,10 @@ class Counter extends React.Component {
 
 Counter.contextTypes = {
   store: PropTypes.object
+};
+
+Counter.propTypes = {
+  caption: PropTypes.string.isRequired
 };
 
 export default Counter;
