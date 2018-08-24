@@ -6,26 +6,52 @@ import {closeSlider} from '../actions.js';
 import './style.css';
 
 
+const links = [
+  {
+		exact: true,
+	  text: 'Home',
+		path: '/'
+	},
+	{
+	  text: 'About',
+		path: '/about'
+	},
+	{
+	  text: 'Topic',
+		path: '/topic'
+	},
+	{
+	  text: 'Counter',
+		path: '/counter'
+	},
+	{
+	  text: 'Counters',
+		path: '/counters'
+	},
+	{
+	  text: 'Summary',
+		path: '/summary'
+	}
+];
+
 const SliderContent = ({sliderStyle, onClickCloseBtn}) => (
 	<div className="slider" style={sliderStyle}>
-		<p className="slider-menu">
-			<i onClick={onClickCloseBtn}></i>
-		</p>
-		<p className="slider-menu">
-			<span onClick={onClickCloseBtn}><NavLink exact to="/" activeClassName="active-selected" replace>Home</NavLink></span>
-		</p>
-		<p className="slider-menu">
-			<span onClick={onClickCloseBtn}><NavLink to="/about" activeClassName="active-selected" replace>About</NavLink></span>
-		</p>
-		<p className="slider-menu">
-			<span onClick={onClickCloseBtn}><NavLink to="/topic" activeClassName="active-selected" replace>Topic</NavLink></span>
-		</p>
-		<p className="slider-menu">
-			<span onClick={onClickCloseBtn}><NavLink to="/counter" activeClassName="active-selected" replace>Counter</NavLink></span>
-		</p>
-		<p className="slider-menu">
-			<span onClick={onClickCloseBtn}><NavLink to="/counters" activeClassName="active-selected" replace>Counters</NavLink></span>
-		</p>
+	  {
+		  links.map((link, index) => {
+				return (
+				  <p key={index} className="slider-menu">
+					  <span onClick={onClickCloseBtn}>
+					    <NavLink
+					      exact={link.exact}
+					      to={link.path}
+					      activeClassName="active-selected"
+					      replace
+					    >{link.text}</NavLink>
+					  </span>
+					</p>
+				);
+			})
+		}
 	</div>
 );
 
