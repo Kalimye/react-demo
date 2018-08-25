@@ -1,8 +1,16 @@
 import React from 'react';
+import Counter from './counter.js';
+import Summary from './summary.js';
+
+import './style.css';
 
 const CounterContainer = () => (
-  <div>
-	  CounterContainer Component
+  <div className="summary">
+    <Counter caption="First"/>
+    <Counter caption="Second"/>
+    <Counter caption="Third"/>
+		<hr />
+		<Summary />
 	</div>
 );
 

@@ -1,0 +1,32 @@
+.main .summary {
+	padding-top: 10px;
+	padding-left: 5px;
+  display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.main .summary .summary-item {
+	padding-bottom: 10px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.main .summary .button {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-bottom: 1px;
+	margin-right: 10px;
+}
+.main .summary .button.icon-add {
+  background: url("./images/add.svg") no-repeat center center;
+	background-size: 100%;
+}
+.main .summary .button.icon-reduce {
+  background: url("./images/reduce.svg") no-repeat center center;
+	background-size: 100%;
+	margin-right: 20px;
+}

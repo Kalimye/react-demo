@@ -1,0 +1,2 @@
+export const INCREMENT = 'SUMMARY/INCREMENT';
+export const DECREMENT = 'SUMMARY/DECREMENT';

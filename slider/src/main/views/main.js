@@ -34,6 +34,12 @@ const Counters = props => (
 	</Bundle>
 );
 
+const Summary = props => (
+	<Bundle load={() => import('../../summary/')}>
+	  {Summary => <Summary {...props} />}
+	</Bundle>
+);
+
 const Main = () => (
 	<div className="main">
 		<Route exact path="/" component={Home}/>
@@ -41,6 +47,7 @@ const Main = () => (
 		<Route path="/topic" component={Topic}/>
 		<Route path="/counter" component={Counter}/>
 		<Route path="/counters" component={Counters}/>
+		<Route path="/summary" component={Summary}/>
 	</div>
 );
 
