@@ -10,8 +10,7 @@ import slide03 from './images/slide03.jpeg';
 
 class SwiperDemo extends React.Component {
 	componentDidMount() {
-	  console.log(slide01);
-		const swiper = new Swiper(this.refs.swiper, {
+		new Swiper(this.refs.swiper, {
 		  observer: true,
 			autoplay: true,
 			loop: true,
