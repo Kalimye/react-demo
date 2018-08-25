@@ -31,8 +31,10 @@ describe('todo/actions', () => {
 			const addTodoAction = addTodo(text);
 		  const toggleTodoAction = toggleTodo(addTodoAction.id);
 
-		  expect(toggleTodoAction.type).toBe(actionTypes.TOGGLE_TODO);
-		  expect(toggleTodoAction.id).toBe(addTodoAction.id);
+			expect(toggleTodoAction).toEqual({
+			  type: actionTypes.TOGGLE_TODO,
+				id: addTodoAction.id
+			});
 		});
 
 	  it('将 todo 待办事项完成状态标记为`未完成`状态', () => {
@@ -42,8 +44,10 @@ describe('todo/actions', () => {
 			toggleTodo(addTodoAction.id);
 		  const toggleTodoAction = toggleTodo(addTodoAction.id);
 
-		  expect(toggleTodoAction.type).toBe(actionTypes.TOGGLE_TODO);
-		  expect(toggleTodoAction.id).toBe(addTodoAction.id);
+			expect(toggleTodoAction).toEqual({
+			  type: actionTypes.TOGGLE_TODO,
+				id: addTodoAction.id
+			});
 		});
 	});
 
@@ -53,8 +57,10 @@ describe('todo/actions', () => {
 			const addTodoAction = addTodo(text);
 		  const removeTodoAction = removeTodo(addTodoAction.id);
 
-		  expect(removeTodoAction.type).toBe(actionTypes.REMOVE_TODO);
-		  expect(removeTodoAction.id).toBe(addTodoAction.id);
+			expect(removeTodoAction).toEqual({
+			  type: actionTypes.REMOVE_TODO,
+				id: addTodoAction.id
+			});
 		});
 	});
 });
