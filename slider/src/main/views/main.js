@@ -40,6 +40,12 @@ const Summary = props => (
 	</Bundle>
 );
 
+const SwiperDemo = props => (
+	<Bundle load={() => import('../../swiperDemo/')}>
+	  {SwiperDemo => <SwiperDemo {...props} />}
+	</Bundle>
+);
+
 const Main = () => (
 	<div className="main">
 		<Route exact path="/" component={Home}/>
@@ -48,6 +54,7 @@ const Main = () => (
 		<Route path="/counter" component={Counter}/>
 		<Route path="/counters" component={Counters}/>
 		<Route path="/summary" component={Summary}/>
+		<Route path="/swiper-demo" component={SwiperDemo}/>
 	</div>
 );
 

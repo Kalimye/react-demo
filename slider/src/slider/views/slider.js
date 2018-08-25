@@ -31,6 +31,10 @@ const links = [
 	{
 	  text: 'Summary',
 		path: '/summary'
+	},
+	{
+	  text: 'SwiperDemo',
+		path: '/swiper-demo'
 	}
 ];
 
