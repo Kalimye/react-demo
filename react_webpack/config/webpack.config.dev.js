@@ -22,6 +22,13 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
+const htmlWebpackPluginOptions = {
+	inject: true,
+	chunks: ['index'],
+	title: '首页',
+	template: paths.appHtml,
+};
+
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
@@ -54,24 +61,14 @@ module.exports = {
 			// changing JS code would still trigger a refresh.
 		],
 		about: [
-			// We ship a few polyfills by default:
 			require.resolve('./polyfills'),
-			// Include an alternative client for WebpackDevServer. A client's job is to
-			// connect to WebpackDevServer by a socket and get notified about changes.
-			// When you save a file, the client will either apply hot updates (in case
-			// of CSS changes), or refresh the page (in case of JS changes). When you
-			// make a syntax error, this client will display a syntax error overlay.
-			// Note: instead of the default WebpackDevServer client, we use a custom one
-			// to bring better experience for Create React App users. You can replace
-			// the line below with these two lines if you prefer the stock client:
-			// require.resolve('webpack-dev-server/client') + '?/',
-			// require.resolve('webpack/hot/dev-server'),
 			require.resolve('react-dev-utils/webpackHotDevClient'),
-			// Finally, this is your app's code:
 			paths.appSrc + '/about.js',
-			// We include the app code last so that if there is a runtime error during
-			// initialization, it doesn't blow up the WebpackDevServer client, and
-			// changing JS code would still trigger a refresh.
+		],
+		mentors: [
+			require.resolve('./polyfills'),
+			require.resolve('react-dev-utils/webpackHotDevClient'),
+			paths.appSrc + '/mentors.js',
 		]
 	},
   output: {
@@ -254,18 +251,18 @@ module.exports = {
     // In development, this will be an empty string.
     new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
-    new HtmlWebpackPlugin({
-      inject: true,
-			chunks: ['index'],
-			title: '首页',
-      template: paths.appHtml,
-    }),
+    new HtmlWebpackPlugin({...htmlWebpackPluginOptions}),
 		new HtmlWebpackPlugin({
-		  inject: true,
+			...htmlWebpackPluginOptions,
 			chunks: ['about'],
 			title: '关于我们',
-			template: paths.appHtml,
-			filename: 'about.html'
+			filename: 'about/index.html'
+		}),
+		new HtmlWebpackPlugin({
+			...htmlWebpackPluginOptions,
+			chunks: ['mentors'],
+			title: '导师列表',
+			filename: 'mentors/index.html'
 		}),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),

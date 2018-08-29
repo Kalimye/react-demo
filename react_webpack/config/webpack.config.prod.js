@@ -46,6 +46,25 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
     { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {};
 
+const htmlWebpackPluginOptions = {
+	inject: true,
+	chunks: ['index'],
+	template: paths.appHtml,
+	minify: {
+		removeComments: true,
+		collapseWhitespace: true,
+		removeRedundantAttributes: true,
+		useShortDoctype: true,
+		removeEmptyAttributes: true,
+		removeStyleLinkTypeAttributes: true,
+		keepClosingSlash: true,
+		minifyJS: true,
+		minifyCSS: true,
+		minifyURLs: true,
+	},
+	title: '首页'
+};
+
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
@@ -64,6 +83,10 @@ module.exports = {
 		about: [
 		  require.resolve('./polyfills'),
 			paths.appSrc + '/about.js'
+		],
+		mentors: [
+		  require.resolve('./polyfills'),
+			paths.appSrc + '/mentors.js'
 		]
 	},
   output: {
@@ -72,8 +95,8 @@ module.exports = {
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    filename: '[name]/static/js/[name].bundle.[chunkhash:8].js',
+    chunkFilename: 'static/js/[name].bundle.[chunkhash:8].js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -250,42 +273,18 @@ module.exports = {
     // in `package.json`, in which case it will be the pathname of that URL.
     new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
+    new HtmlWebpackPlugin({...htmlWebpackPluginOptions}),
     new HtmlWebpackPlugin({
-      inject: true,
-			chunks: ['index'],
-			title: '首页',
-      template: paths.appHtml,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
+			...htmlWebpackPluginOptions,
+			chunks: ['about'],
+			filename: 'about/index.html',
+			title: '关于我们'
     }),
     new HtmlWebpackPlugin({
-      inject: true,
-			chunks: ['about'],
-			title: '关于我们',
-      template: paths.appHtml,
-			filename: 'about.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
+			...htmlWebpackPluginOptions,
+			chunks: ['mentors'],
+			filename: 'mentors/index.html',
+			title: '导师列表'
     }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
