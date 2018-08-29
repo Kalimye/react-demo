@@ -76,15 +76,30 @@ module.exports = {
 	},
   output: {
     // Add /* filename */ comments to generated require()s in the output.
+		//
+		// output.pathinfo
+		//   告知 webpack 在 bundle 中引入`所包含模块信息`的相关注释
+		//   不应该用于生产环境，但是对于阅读开发环境中的生成代码及其有用
     pathinfo: true,
+
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/[name].bundle.js',
+		//
+		// output.filename
+		//   决定每个输出 bundle 的名称，这些 bundle 将被写到 output.path 选项指定
+		//   的目录下
+    filename: 'static/js/[name].bundle.js',  // [name] - 模块名称
+
     // There are also additional JS chunk files if you use code splitting.
+		//
+		// output.chunkFilename
+		//   决定非入口(non-entry) chunk 的文件名称
     chunkFilename: 'static/js/[name].chunk.js',
+
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath,
+
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
@@ -120,7 +135,7 @@ module.exports = {
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
     ],
   },
-  module: {
+  module: {  // loaders...
     strictExportPresence: true,
     rules: [
       // TODO: Disable require.ensure as it's not a standard language feature.
@@ -277,6 +292,7 @@ module.exports = {
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
+	// 下方的 empty 表示一律提供空对象
   node: {
     dgram: 'empty',
     fs: 'empty',
